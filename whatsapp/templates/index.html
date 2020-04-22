@@ -65,6 +65,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="./messagecount">Total messages count</a>
+            <a class="dropdown-item" href="./totalemojicount">Total emoji count</a>
             <a class="dropdown-item" href="./mostusedwords">Most used words</a>
             <a class="dropdown-item" href="./mostusedemoji">Most used emojis</a>
         </div>
@@ -92,6 +93,31 @@
 
     <div class="row">
         {% for key,value in count %}
+            <div class="col-sm-6">
+                <div class="card border border-primary" style="margin-bottom: 20px">
+
+                    <div class="card-body">
+                        <h3 style="text-align: center" class="card-title">{{ key }}</h3>
+                        <h4 style="text-align: center" class="card-text">{{ value }}</h4>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if totalemojicount %}
+    </br>
+    <script>
+        $("#dropdown").css("display", "block")
+    </script>
+
+    <h1 style="text-align: center">Total emojis sent by individual user:</h1>
+    </br>
+
+    <div class="row">
+        {% for key,value in totalemojicount %}
             <div class="col-sm-6">
                 <div class="card border border-primary" style="margin-bottom: 20px">
 

@@ -102,3 +102,20 @@ def mostusedemoji(request):
     sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
     ten_words = sorted_count[:10]
     return render(request, 'index.html', {'mostusedemojis': ten_words})
+
+def totalemojicount(request):
+    user_ip = request.META.get("REMOTE_ADDR")
+    count = {}
+    chat = fileread(user_ip)
+    for c in chat:
+        speaker = c[1]
+        text = c[2]
+        for char in text:
+            if char in emoji.UNICODE_EMOJI:
+                if speaker not in count.keys():
+                    count[speaker] = 1
+                else:
+                    count[speaker] += 1
+
+    sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
+    return render(request, 'index.html', {'totalemojicount': sorted_count})
