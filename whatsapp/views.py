@@ -85,3 +85,20 @@ def mostusedwords(request):
     sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
     ten_words = sorted_count[:10]
     return render(request, 'index.html', {'mostusedwords': ten_words})
+
+def mostusedemoji(request):
+    user_ip = request.META.get("REMOTE_ADDR")
+    count = {}
+    chat = fileread(user_ip)
+    for c in chat:
+        text = c[2]
+        for char in text:
+            if char in emoji.UNICODE_EMOJI:
+                if char not in count.keys():
+                    count[char] = 1
+                else:
+                    count[char] += 1
+
+    sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
+    ten_words = sorted_count[:10]
+    return render(request, 'index.html', {'mostusedemojis': ten_words})

@@ -66,6 +66,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="./messagecount">Total messages count</a>
             <a class="dropdown-item" href="./mostusedwords">Most used words</a>
+            <a class="dropdown-item" href="./mostusedemoji">Most used emojis</a>
         </div>
     </div>
 </div>
@@ -115,6 +116,19 @@
     </br>
     {% for word, count in mostusedwords %}
         <h4 style="text-align: center">• {{ word.upper }} - used {{ count }} times.</h4>
+    {% endfor %}
+{% endif %}
+
+{% if mostusedemojis %}
+    </br>
+    <script>
+        $("#dropdown").css("display", "block")
+    </script>
+
+    <h1 style="text-align: center">Most used 10 emojis in chat:</h1>
+    </br>
+    {% for emoji, count in mostusedemojis %}
+        <h4 style="text-align: center">• {{ emoji }} - used {{ count }} times.</h4>
     {% endfor %}
 {% endif %}
 

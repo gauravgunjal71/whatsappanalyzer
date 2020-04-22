@@ -5,5 +5,7 @@ urlpatterns = [
     path('', views.home),
     path('fileupload', views.fileupload),
     path('messagecount', views.messagecount),
-    path('mostusedwords', views.mostusedwords)
+    path('mostusedwords', views.mostusedwords),
+    path('mostusedemoji', views.mostusedemoji)
+
 ]

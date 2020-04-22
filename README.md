@@ -3,11 +3,8 @@ A Whatsapp chat analysis app with following features -
 
  - Message count by individual user.
  - Most used words.
-
-To-Do -
-
  - Most used emoji.
- - And much more!
+
 
 ## Installation instructions
 Open terminal and install required dependencies using following command -
