@@ -2,11 +2,10 @@
 A Whatsapp chat analysis app with following features - 
 
  - Message count by individual user.
+ - Most used words.
 
 To-Do -
 
- - Average message length.
- - Most used word.
  - Most used emoji.
  - And much more!
 

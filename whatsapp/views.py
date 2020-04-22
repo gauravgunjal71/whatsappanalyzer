@@ -55,7 +55,6 @@ def fileread(user_ip):
                         timestamp = lines[0]
                         chat += [[timestamp, speaker, text]]
     return chat
-# 9767452363
 
 def messagecount(request):
     user_ip = request.META.get("REMOTE_ADDR")
@@ -69,3 +68,20 @@ def messagecount(request):
             count[c[1]] += 1
     sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
     return render(request, 'index.html', {'count': sorted_count})
+
+def mostusedwords(request):
+    user_ip = request.META.get("REMOTE_ADDR")
+    count = {}
+    chat = fileread(user_ip)
+    for c in chat:
+        text = c[2]
+        for word in text.split():
+            if word != "<Media" and word != "omitted>":
+                if word not in count.keys():
+                    count[word] = 1
+                else:
+                    count[word] += 1
+
+    sorted_count = sorted(count.items(), key=lambda kv: kv[1], reverse=True)
+    ten_words = sorted_count[:10]
+    return render(request, 'index.html', {'mostusedwords': ten_words})

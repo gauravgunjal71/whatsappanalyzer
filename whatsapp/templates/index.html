@@ -65,6 +65,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="./messagecount">Total messages count</a>
+            <a class="dropdown-item" href="./mostusedwords">Most used words</a>
         </div>
     </div>
 </div>
@@ -87,20 +88,11 @@
 
     <h1 style="text-align: center">Total messages sent by individual user:</h1>
     </br>
-    {#    <div class="container">#}
-    {#        {% for key,value in count.items %}#}
-    {#            <div style="width: 50%; float: left">#}
-    {#                <h1 style="text-align: center; color: darkblue">{{ key }}</h1>#}
-    {#                <h2 style="text-align: center">{{ value }}</h2>#}
-    {#            </div>#}
-    {#        {% endfor %}#}
-    {#        </br>#}
-    {#    </div>#}
 
     <div class="row">
         {% for key,value in count %}
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card border border-primary" style="margin-bottom: 20px">
 
                     <div class="card-body">
                         <h3 style="text-align: center" class="card-title">{{ key }}</h3>
@@ -111,7 +103,19 @@
             </div>
         {% endfor %}
     </div>
+{% endif %}
 
+{% if mostusedwords %}
+    </br>
+    <script>
+        $("#dropdown").css("display", "block")
+    </script>
+
+    <h1 style="text-align: center">Most used 10 words in chat:</h1>
+    </br>
+    {% for word, count in mostusedwords %}
+        <h4 style="text-align: center">• {{ word.upper }} - used {{ count }} times.</h4>
+    {% endfor %}
 {% endif %}
 
 
