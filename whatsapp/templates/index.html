@@ -1,0 +1,125 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'upload_style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>Hello, world!</title>
+</head>
+<body class="container">
+</br>
+<div>
+    <h1 style="text-align: center">Analyze your Whatsapp chats</h1>
+</div>
+</br>
+<div>
+    <form action="./fileupload" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <h3 style="text-align: center">Upload your chat file</h3>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file" accept="text/plain" name="file">
+                <label id="inputlable" class="custom-file-label" for="file" aria-describedby="inputGroupFileAddon02">Choose
+                    file</label>
+            </div>
+        </div>
+        <div>
+            <button id="submit" style="margin: auto; display: block" type="submit" class="btn btn-primary" disabled>
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+<div id="error_file" style="display: none;text-align: center">
+    <h1>Please select whatsapp chat file only</h1>
+</div>
+
+<div id="dropdown" style="display: none">
+    </br>
+    <h3 style="text-align: center">Select option from below dropdown</h3>
+
+    <div class="dropdown" style="margin-left: 43%">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            Choose option
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="./messagecount">Total messages count</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    localStorage.setItem("message", "{{ message }}")
+    if (localStorage.getItem("message") == "error") {
+        $("#error_file").css("display", "block");
+    } else if (localStorage.getItem("message") == "success") {
+        $("#dropdown").css("display", "block")
+    }
+</script>
+
+{% if count %}
+    </br>
+    <script>
+        $("#dropdown").css("display", "block")
+        console.log("{{ count }}")
+    </script>
+
+    <h1 style="text-align: center">Total messages sent by individual user:</h1>
+    </br>
+    {#    <div class="container">#}
+    {#        {% for key,value in count.items %}#}
+    {#            <div style="width: 50%; float: left">#}
+    {#                <h1 style="text-align: center; color: darkblue">{{ key }}</h1>#}
+    {#                <h2 style="text-align: center">{{ value }}</h2>#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#        </br>#}
+    {#    </div>#}
+
+    <div class="row">
+        {% for key,value in count %}
+            <div class="col-sm-6">
+                <div class="card">
+
+                    <div class="card-body">
+                        <h3 style="text-align: center" class="card-title">{{ key }}</h3>
+                        <h4 style="text-align: center" class="card-text">{{ value }}</h4>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="{% static 'fileupload.js' %}"></script>
+
+
+</body>
+</html>
