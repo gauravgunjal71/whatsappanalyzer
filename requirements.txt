@@ -9,7 +9,7 @@
 # D:\Development\DJango\Whatsapp chat analyzer\WAChatAnalyzer\whatsapp\tests.py: 1
 # D:\Development\DJango\Whatsapp chat analyzer\WAChatAnalyzer\whatsapp\urls.py: 1
 # D:\Development\DJango\Whatsapp chat analyzer\WAChatAnalyzer\whatsapp\views.py: 2,3
-Django == 2.2.12
+Django == 2.2.13
 
 # D:\Development\DJango\Whatsapp chat analyzer\WAChatAnalyzer\whatsapp\views.py: 7
 emoji == 0.5.4
